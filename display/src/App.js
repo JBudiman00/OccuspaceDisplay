@@ -40,27 +40,28 @@ import 'react-circular-progressbar/dist/styles.css';
 function App() {
   const [data, setData] = useState([]);
 
+  const apiKey = process.env.REACT_APP_API_KEY;
+  const fetchData = async () => {
+    const response = await fetch('https://api.occuspace.io/v1/location/986/now', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + apiKey,
+        // any other headers you need to add
+      },
+    });
+    const jsonData = await response.json();
+    setData(jsonData);
+  };
+  
   useEffect(() => {
-    const apiKey = process.env.REACT_APP_API_KEY;
-
-    const fetchData = async () => {
-      const response = await fetch('https://api.occuspace.io/v1/location/986/now', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + apiKey,
-          // any other headers you need to add
-        },
-      });
-      const jsonData = await response.json();
-      setData(jsonData);
-    };
     fetchData();
   }, []);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-      {/* Main Location */}
-      <div style={{ width: '30%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+      <h1>TEST</h1>
+
+      <div style={{ width: '33%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <h1 style={{ textAlign: 'center' }}>{data.data.name}</h1>
         <div style={{ width: '70%', height: '70%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <CircularProgressbar
@@ -75,8 +76,7 @@ function App() {
         </div>
       </div>
 
-      {/* Child Locations */}
-      <div style={{ width: '30%', height: '100%', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ width: '33%', height: '100%', display: 'flex', flexDirection: 'column' }}>
         {data.data.childCounts.map((location) => (
           <div key={location.id} style={{ width: '100%', height: '33%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <CircularProgressbar
@@ -93,8 +93,7 @@ function App() {
         ))}
       </div>
 
-      {/* Images */}
-      <div style={{ width: '30%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+      <div style={{ width: '33%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <img src="https://via.placeholder.com/150x150" alt="Image 1" style={{ margin: '10px' }} />
         <img src="https://via.placeholder.com/150x150" alt="Image 2" style={{ margin: '10px' }} />
       </div>
