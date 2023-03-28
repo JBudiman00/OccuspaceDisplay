@@ -7,8 +7,7 @@ function App() {
   const [data, setData] = useState([]);
   
   useEffect(() => {
-    const apiKey = "U3qDEKtL7WiUfWXDfbCBZzQdYYg2fzzZRwbplLxP";
-    //const apiKey = process.env.REACT_APP_API_KEY;
+    const apiKey = process.env.REACT_APP_API_KEY;
 
     console.log('test');
     console.log(apiKey);
