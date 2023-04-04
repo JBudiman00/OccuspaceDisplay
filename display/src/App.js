@@ -35,8 +35,19 @@ function App() {
   }
   
   useEffect(() => {
+    //Update very 5 seconds
+    const interval = setInterval(() => {
+      fetchData();
+    }, 5000);
+    
+    //Fetch Data
     fetchData()
     .then(getCharts);
+
+    //Clear memory of interval
+    return () => {
+      clearInterval(interval);
+    }
   }, []);
 
   return (
