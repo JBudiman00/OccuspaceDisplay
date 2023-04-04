@@ -38,7 +38,8 @@ function App() {
   useEffect(() => {
     //Update very 5 seconds
     const interval = setInterval(() => {
-      fetchData();
+      fetchData()
+      .then(getCharts);
     }, 5000);
     
     //Fetch Data
@@ -60,8 +61,8 @@ function App() {
         </div>
 
         <div style={{ width: '33%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <img src="https://via.placeholder.com/150x150" alt="Image 1" style={{ margin: '10px' }} />
-        <img src={purdueTHINK} alt="Image 2" style={{ margin: '10px' }} />
+        <img src="https://via.placeholder.com/150x150" style={{ margin: '10px' }} />
+        <img src={purdueTHINK} style={{ margin: '10px' }} />
       </div>
       </div>
     </>
