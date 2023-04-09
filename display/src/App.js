@@ -2,91 +2,109 @@ import React, { useState, useEffect } from 'react';
 import 'react-circular-progressbar/dist/styles.css';
 import PieChart from './components/piechart.jsx';
 import purdueTHINK from './PurdueTHINK.jpg';
+import QrCode  from './QRcode.png';
 
 function App() {
-  const [mainChart, setMain] = useState();
-  const [chartArray, setChart2] = useState([]);
+  
+  const [chartArray, setChart2] = useState([[], []]);
 
   const apiKey = process.env.REACT_APP_API_KEY;
-  const fetchData = async () => {
-    const response = await fetch('https://api.occuspace.io/v1/location/986/now', {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + apiKey,
-      },
-    });
-    const jsonData = await response.json();
 
-    return jsonData;
+  const fetchData = async () => {
+    const response = await Promise.all([
+      fetch('https://api.occuspace.io/v1/location/985/now', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + apiKey,
+        },
+      }),
+      fetch('https://api.occuspace.io/v1/location/986/now', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + apiKey,
+        },
+      }),
+      fetch('https://api.occuspace.io/v1/location/987/now', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + apiKey,
+        },
+      }),
+      fetch('https://api.occuspace.io/v1/location/988/now', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + apiKey,
+        },
+      }),
+      fetch('https://api.occuspace.io/v1/location/989/now', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + apiKey,
+        },
+      }),
+    ]);
+    const jsonResponses = await Promise.all(response.map((res) => res.json()));
+    return jsonResponses;
   };
 
-  const getCharts = (response) => {
-    //console.log(response.data.name);
-    const chart = <PieChart name={response.data.name} percent={response.data.percentage}/>;
-    //const chart2 = <PieChart name={response.data.name} percent={response.data.percentage}/>;
-
-    const chartA = response.data.childCounts.map((location) => {
-      return (
-        <PieChart name={location.name} percent={location.percentage} />
-      );
+  const getCharts = (responses) => {
+    const charts = responses.map((response) => {
+      const chart = <PieChart name={response.data.name} percent={response.data.percentage} />;
+      return chart;
     });
-
-    setMain(chart);
-    setChart2(chartA);
-  }
   
+    const newChart = <PieChart name={responses[0].data.name} percent={responses[0].data.percentage} />;
+    charts.splice(0, 0, newChart);
+  
+    // Split the remaining charts into two arrays of 3 and 2
+    setChart2([charts.slice(1, 4), charts.slice(4)]);
+  };
+  
+
   useEffect(() => {
-    //Update very 5 seconds
+    //Update every 5 seconds
     const interval = setInterval(() => {
-      fetchData()
-      .then(getCharts);
+      fetchData().then(getCharts);
     }, 5000);
-    
+
     //Fetch Data
-    fetchData()
-    .then(getCharts);
+    fetchData().then(getCharts);
 
     //Clear memory of interval
     return () => {
       clearInterval(interval);
-    }
+    };
   }, []);
 
   return (
-    <>    
-      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-        {mainChart}
-        <div style={{ width: '33%', height: '100%', display: 'flex', flexDirection: 'column' }}>
-          {chartArray}
+    <>
+      <h1 style={{ textAlign: 'center' }}>Real Time Occupancy Data</h1>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+          {/* First row of 3 circles */}
+          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
+            {chartArray[0]}
+          </div>
+          {/* Second row of 2 circles */}
+          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', marginTop: '20px' }}>
+            {chartArray[1]}
+          </div>
         </div>
-
-        <div style={{ width: '33%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <img src="https://via.placeholder.com/150x150" style={{ margin: '10px' }} />
-        <img src={purdueTHINK} style={{ margin: '10px' }} />
-      </div>
+  
+        <div style={{ flex: 0.3, marginTop: '1px', display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+          <img src={QrCode} style={{ margin: '0 350px', marginBottom: '10px', height: '200px' }} />
+          <img src={purdueTHINK} style={{ margin: '0 300px', marginBottom: '10px', height: '160px' }} />
+        </div>
       </div>
     </>
-
-    //   <div style={{ width: '33%', height: '100%', display: 'flex', flexDirection: 'column' }}>
-    //     {data.data.childCounts.map((location) => (
-    //       <div key={location.id} style={{ width: '100%', height: '33%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-    //         <CircularProgressbar
-    //           value={location.percentage * 100}
-    //           text={`${Math.round((location.percentage) * 100)}%`}
-    //           styles={buildStyles({
-    //             textColor: 'black',
-    //             pathColor: `rgba(0, 0, 100, ${location.percentage})`,
-    //             trailColor: '#d6d6d6',
-    //           })}
-    //         />
-    //         <p style={{ textAlign: 'center', margin: '10px' }}>{location.name}</p>
-    //       </div>
-    //     ))}
-    //   </div>
-
-
-    // </div>
   );
+  
+  
+  
+  
+  
+  
+  
 }
 
 export default App;
