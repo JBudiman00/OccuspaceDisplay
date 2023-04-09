@@ -3,11 +3,13 @@ import 'react-circular-progressbar/dist/styles.css';
 import PieChart from './components/piechart.jsx';
 import purdueTHINK from './PurdueTHINK.jpg';
 import QrCode  from './QRcode.png';
+import './App.css'
+import CARD from './components/card.jsx'
 
 function App() {
   
   const [chartArray, setChart2] = useState([[], []]);
-
+  const cardData = [{floorName:'1st Floor',capacity:'195',chart:chartArray[0][0]},{floorName:'2nd Floor',capacity:'150',chart:chartArray[0][0]},{floorName:'3rd Floor', capacity:'130',chart:chartArray[0][0]}]
   const apiKey = process.env.REACT_APP_API_KEY;
 
   const fetchData = async () => {
@@ -96,6 +98,23 @@ function App() {
           <img src={purdueTHINK} style={{ margin: '0 300px', marginBottom: '10px', height: '160px' }} />
         </div>
       </div>
+
+
+      {/* start of main library css */}
+
+      
+        <div className = "card">
+        <h1 style={{ textAlign: 'left', fontSize:'30px', fontFamily:'Georgia, serif', marginBottom:'2px'}}>HSSE Library Real Time Occupancy Data</h1>
+        <h1 style={{ textAlign: 'left', fontSize:'20px', fontFamily:'Georgia, serif'}}>Open From 8-10 pm</h1>
+          {cardData.map((card,index) => (
+            <CARD key={index} floorName={card.floorName} capacity = {card.capacity} chart = {card.chart}/>))}
+        </div>
+      
+      
+      
+
+
+
     </>
   );
   

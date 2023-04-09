@@ -36,3 +36,61 @@
     transform: rotate(360deg);
   }
 }
+
+.container {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  width: 120vh;
+}
+.card {
+  flex-direction: column;
+  display: flex;
+  width: 60%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100vh;
+  height: auto;
+  margin: auto;
+}
+.card-line{
+  height: 1px;
+  background-color: gray;
+  margin: 8px 0;
+  width: 90%;
+}
+.card-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  width: 100%;
+  border-bottom: 2px solid gray;
+}
+
+.card-leftCol {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 50%;
+
+}
+.card-space {
+  font-size: 16px;
+  font-weight: bold;
+}
+.card-capacity{
+  font-size: 12px;
+  color: gray;
+}
+.card-rightCol{
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
