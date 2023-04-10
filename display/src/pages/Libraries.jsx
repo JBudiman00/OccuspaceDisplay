@@ -8,7 +8,6 @@ import CARD from '../components/card.jsx'
 
 function Libraries () {
   const [chartArray, setChart2] = useState([[], []]);
-  const cardData = [{floorName:'1st Floor',capacity:'195',chart:chartArray[0][0]},{floorName:'2nd Floor',capacity:'150',chart:chartArray[0][0]},{floorName:'3rd Floor', capacity:'130',chart:chartArray[0][0]}]
   const apiKey = process.env.REACT_APP_API_KEY;
 
   const fetchData = async () => {

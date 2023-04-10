@@ -12,53 +12,33 @@ function HSSE () {
     const apiKey = process.env.REACT_APP_API_KEY;
 
     const fetchData = async () => {
-        const response = await Promise.all([
-        fetch('https://api.occuspace.io/v1/location/985/now', {
+        const response = await fetch('https://api.occuspace.io/v1/location/986/now', {
             headers: {
             'Content-Type': 'application/json',
             Authorization: 'Bearer ' + apiKey,
             },
-        }),
-        fetch('https://api.occuspace.io/v1/location/986/now', {
-            headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + apiKey,
-            },
-        }),
-        fetch('https://api.occuspace.io/v1/location/987/now', {
-            headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + apiKey,
-            },
-        }),
-        fetch('https://api.occuspace.io/v1/location/988/now', {
-            headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + apiKey,
-            },
-        }),
-        fetch('https://api.occuspace.io/v1/location/989/now', {
-            headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + apiKey,
-            },
-        }),
-        ]);
-        const jsonResponses = await Promise.all(response.map((res) => res.json()));
-        return jsonResponses;
+        });
+        const jsonResponse = await response.json();
+
+        return jsonResponse;
     };
 
-    const getCharts = (responses) => {
-        const charts = responses.map((response) => {
-        const chart = <PieChart name={response.data.name} percent={response.data.percentage} />;
-        return chart;
-        });
-    
-        const newChart = <PieChart name={responses[0].data.name} percent={responses[0].data.percentage} />;
-        charts.splice(0, 0, newChart);
-    
-        // Split the remaining charts into two arrays of 3 and 2
-        setChart2([charts.slice(1, 4), charts.slice(4)]);
+    const getCharts = (response) => {
+        const chart = <PieChart name={response.data.name} percent={response.data.percentage} />
+
+        console.log(response.data.childCounts)
+
+        //@Pranav was planning to map each child component and add it to a new usestate array  instead of using carddata.
+        //This function pulls each child component from a location, haven't gotten to looking at the data inside though.
+        const chartList = response.data.childCounts.map((item) => {
+            return (
+                {floorName:'1st Floor',capacity:'195',chart:chartArray[0][0]}
+            );
+        })
+
+        console.log(chartList)
+
+        setChart2([[chart], []]);
     };
     
 
