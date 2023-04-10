@@ -47,7 +47,7 @@ function HSSE () {
         const res = []
         responses[0].data.childCounts.map((response) => {
             const name = response.name;
-            const chart = <PieChart name={response.name} percent={response.percentage} />;
+            const chart = <PieChart name="" percent={response.percentage} />;
             const result = {};
             result['floorName'] = name;
             result['chart'] = chart;
