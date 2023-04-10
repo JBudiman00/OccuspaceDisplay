@@ -102,7 +102,7 @@ function HICKS () {
           setTimeout(() => {
             setShowFile2(false);
           }, 3000); // Hide after 3 seconds
-        }, 6000); // Show every 6 seconds
+        }, 15000); // Show every 6 seconds
       
         return () => {
           clearInterval(file2Interval);
@@ -115,12 +115,16 @@ function HICKS () {
         {showFile2 ? (
             <File2 />
           ) : (
-        <div className = "card">
-        <h1 style={{ textAlign: 'left', fontSize:'30px', fontFamily:'Georgia, serif', marginBottom:'2px'}}>Hicks Library Real Time Occupancy Data</h1>
-        <h1 style={{ textAlign: 'left', fontSize:'20px', fontFamily:'Georgia, serif'}}>Open From 8-10 pm</h1>
-          {cardData.map((card,index) => (
-            <CARD key={index} floorName={card.floorName} capacity = {card.capacity} chart = {card.chart}/>))}
-        </div>
+            <div>
+            <div className = "card">
+            <h1 style={{ fontFamily:'tahoma', textAlign: 'left', fontSize:'30px', marginBottom:'2px',fontWeight:'normal'}}>HICKS Library Real Time Occupancy Data</h1>
+            <h2 style={{ fontFamily:'tahoma', textAlign: 'left', fontSize:'15px',fontWeight:'bolder' }}>Open 24/7</h2>
+            {cardData.map((card,index) => (
+                <CARD key={index} floorName={card.floorName} capacity = {card.capacity} chart = {card.chart}/>))}
+            <div className='image-row'>
+            </div>
+            </div>
+            </div>
         )}
 
         </>
