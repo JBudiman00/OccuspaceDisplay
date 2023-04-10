@@ -23,10 +23,10 @@ export default function PieChart(props) {
 
   if (info === "HSSE Library") {
     isOpen = currentHour >= 8 && currentHour < 24;
-    subtext = "8am - 12am";
+    subtext = "Stewart, 8am - 12am";
   } else if (info === "Parrish Library") {
     isOpen = currentHour >= 8 && currentHour < 24;
-    subtext = "8am - 12am";
+    subtext = "Krannert, 8am - 12am";
   } else if (info === "Math Library") {
     isOpen = currentHour >= 8 && currentHour < 22;
     subtext = "8am - 10pm";

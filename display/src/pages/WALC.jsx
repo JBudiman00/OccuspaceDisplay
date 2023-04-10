@@ -102,7 +102,7 @@ function WALC () {
           setTimeout(() => {
             setShowFile2(false);
           }, 3000); // Hide after 3 seconds
-        }, 15000); // Show every 6 seconds
+        }, 6000); // Show every 6 seconds
       
         return () => {
           clearInterval(file2Interval);
@@ -117,7 +117,7 @@ function WALC () {
           ) : (
             <div>
             <div className = "card">
-            <h1 style={{ fontFamily:'tahoma', textAlign: 'left', fontSize:'30px', marginBottom:'2px',fontWeight:'normal'}}>WALC Library Real Time Occupancy Data</h1>
+            <h1 style={{ fontFamily:'tahoma', textAlign: 'left', fontSize:'30px', marginBottom:'2px',fontWeight:'bolder'}}>WALC Library Real Time Occupancy Data</h1>
             <h2 style={{ fontFamily:'tahoma', textAlign: 'left', fontSize:'15px',fontWeight:'bolder' }}>Open 24/7</h2>
             {cardData.map((card,index) => (
                 <CARD key={index} floorName={card.floorName} capacity = {card.capacity} chart = {card.chart}/>))}

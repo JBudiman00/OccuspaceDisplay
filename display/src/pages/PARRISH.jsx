@@ -157,8 +157,8 @@ function PARRISH () {
             <File2 />
           ) : (
         <div className = "card">
-        <h1 style={{ textAlign: 'left', fontSize:'30px', fontFamily:'Georgia, serif', marginBottom:'2px'}}>PARRISH Library Real Time Occupancy Data</h1>
-        <h1 style={{ textAlign: 'left', fontSize:'20px', fontFamily:'Georgia, serif'}}>Open From 8-10 pm</h1>
+        <h1 style={{ fontFamily:'tahoma', textAlign: 'left', fontSize:'30px', marginBottom:'2px',fontWeight:'bolder'}}>PARRISH Library Real Time Occupancy Data</h1>
+        <h2 style={{ fontFamily:'tahoma', textAlign: 'left', fontSize:'15px',fontWeight:'bolder' }}>Krannert Library, Open 8am - 12pm</h2>
           {mainData.map((card,index) => (
             <CARD key={index} floorName={card.floorName} capacity = {card.capacity} chart = {card.chart}/>))}
           {cardData.map((card,index) => (

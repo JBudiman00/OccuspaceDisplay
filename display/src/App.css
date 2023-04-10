@@ -114,6 +114,8 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  vertical-align: middle;
+  padding-bottom: 2vh;
 }
 .h1,p {
   font-family: tahoma;
