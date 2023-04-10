@@ -8,6 +8,7 @@ import CARD from '../components/card.jsx'
 import File2 from './Libraries.jsx'
 
 function HSSE () {
+
     const [chartArray, setChart2] = useState([[], []]);
     const cardData = [{floorName:'1st Floor',capacity:'195',chart:chartArray[0][0]},{floorName:'2nd Floor',capacity:'150',chart:chartArray[0][0]},{floorName:'3rd Floor', capacity:'130',chart:chartArray[0][0]}]
     const apiKey = process.env.REACT_APP_API_KEY;
@@ -60,13 +61,15 @@ function HSSE () {
         };
     }, []);
 
+
+    // for toggling between this page and the all libraries page
     useEffect(() => {
         const file2Interval = setInterval(() => {
           setShowFile2(true);
           setTimeout(() => {
             setShowFile2(false);
-          }, 30000); // Hide after 2 seconds
-        }, 60000); // Show every 10 seconds
+          }, 3000); // Hide after 3 seconds
+        }, 6000); // Show every 6 seconds
       
         return () => {
           clearInterval(file2Interval);
