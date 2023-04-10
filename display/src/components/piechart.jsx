@@ -18,20 +18,31 @@ export default function PieChart(props) {
   const currentHour = now.getHours();
 
   // check if current time is between 10 pm and 8 am
-  var isOpen = true;
-  
+  let isOpen = true;
+  let subtext = "";
+
   if (info === "HSSE Library") {
     isOpen = currentHour >= 8 && currentHour < 24;
+    subtext = "8am - 12am";
   } else if (info === "Parrish Library") {
     isOpen = currentHour >= 8 && currentHour < 24;
+    subtext = "8am - 12am";
   } else if (info === "Math Library") {
     isOpen = currentHour >= 8 && currentHour < 22;
+    subtext = "8am - 10pm";
+  } else if (info === "WALC" || info === "Hicks Library") {
+    subtext = "Open 24/7";
   }
 
   return (
     <div style={{ width: '33%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-      <h1 style={{ textAlign: 'center', color: '#4075C9' }}>{info}</h1>
-      <div style={{ width: '70%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div style={{ textAlign: 'center' }}>
+        <h1 style={{ color: '#4075C9' }}>{info}</h1>
+        <div style={{ fontWeight: 'bold' }}>
+          <p>{subtext}</p>
+        </div>
+      </div>
+      <div style={{ width: '70%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
         <CircularProgressbar
           value={isOpen ? percent * 100 : 0}
           text={isOpen ? `${Math.round(percent * 100)}%` : "Closed"}
