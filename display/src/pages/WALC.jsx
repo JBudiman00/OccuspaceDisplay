@@ -51,7 +51,7 @@ function WALC () {
             if (name.includes('Lower Level')) {
                 name = 'Basement Level'
             }
-            const chart = <PieChart name={name} percent={response.percentage} />;
+            const chart = <PieChart name="" percent={response.percentage} />;
             const result = {};
             result['floorName'] = name;
             result['chart'] = chart;
