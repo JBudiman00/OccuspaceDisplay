@@ -8,7 +8,7 @@ import CARD from '../components/card.jsx'
 
 function WALC () {
     const [chartArray, setChart2] = useState([[], []]);
-    const [cardData,setCard] = useState([{},{},{}]);
+    const [cardData,setCard] = useState([{},{},{},{}]);
     const apiKey = process.env.REACT_APP_API_KEY;
 
     const fetchData = async () => {
@@ -43,6 +43,7 @@ function WALC () {
     const getCharts = (responses) => {
         //console.log(responses[0].data.childCounts)
         const res = []
+        const elems = responses[0].data.childCounts.length;
         responses[0].data.childCounts.map((response) => {
             var name = response.name;
             if (name.includes('Lower Level')) {
@@ -56,7 +57,7 @@ function WALC () {
             const x = fetchCapacity(response.id).then(
                 data => {result['capacity'] = data; 
                 res.push(result);
-                if (res.length === 4) {
+                if (res.length === elems) {
                     res.sort((a,b)=>{
                         if (a.floorName.toUpperCase() > b.floorName.toUpperCase()) {
                             return 1;

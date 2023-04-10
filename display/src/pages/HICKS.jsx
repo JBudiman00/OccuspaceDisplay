@@ -6,14 +6,14 @@ import QrCode  from '../QRcode.png';
 import '../App.css'
 import CARD from '../components/card.jsx'
 
-function HSSE () {
+function HICKS () {
     const [chartArray, setChart2] = useState([[], []]);
     const [cardData,setCard] = useState([{},{},{}]);
     const apiKey = process.env.REACT_APP_API_KEY;
 
     const fetchData = async () => {
         const response = await Promise.all([
-          fetch('https://api.occuspace.io/v1/location/986/now', {
+          fetch('https://api.occuspace.io/v1/location/989/now', {
             headers: {
               'Content-Type': 'application/json',
               Authorization: 'Bearer ' + apiKey,
@@ -43,9 +43,13 @@ function HSSE () {
     const getCharts = (responses) => {
         //console.log(responses[0].data.childCounts)
         const res = []
+        const elems = responses[0].data.childCounts.length;
         responses[0].data.childCounts.map((response) => {
-            const name = response.name;
-            const chart = <PieChart name={response.name} percent={response.percentage} />;
+            var name = response.name;
+            if (name.includes('Lower Level')) {
+                name = 'Basement Level'
+            }
+            const chart = <PieChart name={name} percent={response.percentage} />;
             const result = {};
             result['floorName'] = name;
             result['chart'] = chart;
@@ -53,7 +57,7 @@ function HSSE () {
             const x = fetchCapacity(response.id).then(
                 data => {result['capacity'] = data; 
                 res.push(result);
-                if (res.length === responses[0].data.childCounts.length) {
+                if (res.length === elems) {
                     res.sort((a,b)=>{
                         if (a.floorName.toUpperCase() > b.floorName.toUpperCase()) {
                             return 1;
@@ -91,7 +95,7 @@ function HSSE () {
         
     return(
         <div className = "card">
-        <h1 style={{ textAlign: 'left', fontSize:'30px', fontFamily:'Georgia, serif', marginBottom:'2px'}}>HSSE Library Real Time Occupancy Data</h1>
+        <h1 style={{ textAlign: 'left', fontSize:'30px', fontFamily:'Georgia, serif', marginBottom:'2px'}}>Hicks Library Real Time Occupancy Data</h1>
         <h1 style={{ textAlign: 'left', fontSize:'20px', fontFamily:'Georgia, serif'}}>Open From 8-10 pm</h1>
           {cardData.map((card,index) => (
             <CARD key={index} floorName={card.floorName} capacity = {card.capacity} chart = {card.chart}/>))}
@@ -99,4 +103,4 @@ function HSSE () {
     );
 }
 
-export default HSSE;
+export default HICKS;

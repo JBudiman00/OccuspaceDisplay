@@ -3,6 +3,9 @@ import 'react-circular-progressbar/dist/styles.css';
 import './App.css'
 import HSSE from "./pages/HSSE";
 import WALC from "./pages/WALC";
+import PARRISH from "./pages/PARRISH";
+import MATH from "./pages/MATH";
+import HICKS from "./pages/HICKS";
 import Layout from "./pages/Layout";
 import Libraries from "./pages/Libraries";
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
@@ -14,6 +17,9 @@ function App() {
         <Route exact path="/" element={<Layout />} />
         <Route path="/hsse" element={<HSSE />} />
         <Route path="/walc" element={<WALC />} />
+        <Route path="/parrish" element={<PARRISH />} />
+        <Route path="/math" element={<MATH />} />
+        <Route path="/hicks" element={<HICKS />} />
         <Route path="/libraries" element={<Libraries />} />
       </Routes>
     </Router>
