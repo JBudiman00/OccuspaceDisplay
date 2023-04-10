@@ -1,0 +1,29 @@
+.box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.waitz{
+    width: 20%;
+    order: 1;
+    margin: auto;
+    text-align: center;
+}
+
+.libraries{
+    display: 'flex';
+    flex-direction: 'column';
+    justify-content: 'center';
+    width: 60%;
+    order: 2;
+}
+
+.think{
+    width: 20%;
+    order: 3;
+    margin: auto;
+    text-align: center;
+}
+

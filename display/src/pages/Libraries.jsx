@@ -5,6 +5,7 @@ import purdueTHINK from '../PurdueTHINK.jpg';
 import QrCode  from '../QRcode.png';
 import '../App.css'
 import CARD from '../components/card.jsx'
+import '../styles/libraries.css';
 
 function Libraries () {
   const [chartArray, setChart2] = useState([[], []]);
@@ -78,25 +79,48 @@ function Libraries () {
     };
   }, []);
 
+  // <>
+  //     <h1 style={{ textAlign: 'center' }}>Real Time Occupancy Data</h1>
+  //     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  //       <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+  //         {/* First row of 3 circles */}
+  //         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
+  //           {chartArray[0]}
+  //         </div>
+  //         {/* Second row of 2 circles */}
+  //         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', marginTop: '20px' }}>
+  //           {chartArray[1]}
+  //         </div>
+  //       </div>
+  
+  //       <div style={{ flex: 0.3, marginTop: '1px', display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+  //         <img src={QrCode} style={{ margin: '0 350px', marginBottom: '10px', height: '200px' }} />
+  //         <img src={purdueTHINK} style={{ margin: '0 300px', marginBottom: '10px', height: '160px' }} />
+  //       </div>
+  //     </div>
+  //     </>
+
   return (
     <>
       <h1 style={{ textAlign: 'center' }}>Real Time Occupancy Data</h1>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-          {/* First row of 3 circles */}
-          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
-            {chartArray[0]}
-          </div>
-          {/* Second row of 2 circles */}
-          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', marginTop: '20px' }}>
-            {chartArray[1]}
-          </div>
+      <div className="box">
+      <div className="libraries">
+           {/* First row of 3 circles */}
+           <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
+             {chartArray[0]}
+           </div>
+           {/* Second row of 2 circles */}
+           <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', marginTop: '20px' }}>
+             {chartArray[1]}
+           </div>
+         </div>
+
+         <div className="waitz">
+          <img style={{height: '300px'}} src={QrCode} />
         </div>
-  
-        <div style={{ flex: 0.3, marginTop: '1px', display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-          <img src={QrCode} style={{ margin: '0 350px', marginBottom: '10px', height: '200px' }} />
-          <img src={purdueTHINK} style={{ margin: '0 300px', marginBottom: '10px', height: '160px' }} />
-        </div>
+        <div className="think">
+          <img src={purdueTHINK} />
+        </div> 
       </div>
       </>
       );
