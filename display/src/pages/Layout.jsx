@@ -10,6 +10,9 @@ const Layout = () => {
                     <Link to="/hsse">HSSE Library</Link>
                 </li>
                 <li>
+                    <Link to="/walc">WALC Library</Link>
+                </li>
+                <li>
                     <Link to="/libraries">Main Library Display</Link>
                 </li>
             </ul>

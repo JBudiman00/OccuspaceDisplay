@@ -18,7 +18,7 @@ function Libraries () {
           Authorization: 'Bearer ' + apiKey,
         },
       }),
-      fetch('https://api.occuspace.io/v1/location/986/now', {
+      fetch('https://api.occuspace.io/v1/locations/986/now', {
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + apiKey,
@@ -48,10 +48,12 @@ function Libraries () {
   };
 
   const getCharts = (responses) => {
+    console.log(responses)
     const charts = responses.map((response) => {
       const chart = <PieChart name={response.data.name} percent={response.data.percentage} />;
       return chart;
     });
+    console.log(charts);
   
     const newChart = <PieChart name={responses[0].data.name} percent={responses[0].data.percentage} />;
     charts.splice(0, 0, newChart);

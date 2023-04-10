@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import 'react-circular-progressbar/dist/styles.css';
 import './App.css'
 import HSSE from "./pages/HSSE";
+import WALC from "./pages/WALC";
 import Layout from "./pages/Layout";
 import Libraries from "./pages/Libraries";
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Layout />} />
         <Route path="/hsse" element={<HSSE />} />
+        <Route path="/walc" element={<WALC />} />
         <Route path="/libraries" element={<Libraries />} />
       </Routes>
     </Router>
