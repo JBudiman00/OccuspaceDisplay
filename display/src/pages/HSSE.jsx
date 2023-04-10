@@ -5,11 +5,14 @@ import purdueTHINK from '../PurdueTHINK.jpg';
 import QrCode  from '../QRcode.png';
 import '../App.css'
 import CARD from '../components/card.jsx'
+import File2 from './Libraries.jsx'
 
 function HSSE () {
     const [chartArray, setChart2] = useState([[], []]);
     const cardData = [{floorName:'1st Floor',capacity:'195',chart:chartArray[0][0]},{floorName:'2nd Floor',capacity:'150',chart:chartArray[0][0]},{floorName:'3rd Floor', capacity:'130',chart:chartArray[0][0]}]
     const apiKey = process.env.REACT_APP_API_KEY;
+
+    const [showFile2, setShowFile2] = useState(false);
 
     const fetchData = async () => {
         const response = await fetch('https://api.occuspace.io/v1/location/986/now', {
@@ -56,14 +59,37 @@ function HSSE () {
         clearInterval(interval);
         };
     }, []);
+
+    useEffect(() => {
+        const file2Interval = setInterval(() => {
+          setShowFile2(true);
+          setTimeout(() => {
+            setShowFile2(false);
+          }, 30000); // Hide after 2 seconds
+        }, 60000); // Show every 10 seconds
+      
+        return () => {
+          clearInterval(file2Interval);
+        };
+      }, []);
         
     return(
+        <>
+
+        {showFile2 ? (
+            <File2 />
+          ) : (
+
         <div className = "card">
         <h1 style={{ textAlign: 'left', fontSize:'30px', fontFamily:'Georgia, serif', marginBottom:'2px'}}>HSSE Library Real Time Occupancy Data</h1>
         <h1 style={{ textAlign: 'left', fontSize:'20px', fontFamily:'Georgia, serif'}}>Open From 8-10 pm</h1>
           {cardData.map((card,index) => (
             <CARD key={index} floorName={card.floorName} capacity = {card.capacity} chart = {card.chart}/>))}
         </div>
+
+          )}
+
+</>
     );
 }
 
