@@ -6,9 +6,9 @@ import QrCode  from '../QRcode.png';
 import '../App.css'
 import CARD from '../components/card.jsx'
 import File2 from './Libraries.jsx' // this the main file
+import '../styles/libraries.css';
 
 function HSSE () {
-    const [chartArray, setChart2] = useState([[], []]);
     const [cardData,setCard] = useState([{},{},{}]);
     const apiKey = process.env.REACT_APP_API_KEY;
     const [showFile2, setShowFile2] = useState(false); // File2 is the main file
@@ -71,8 +71,6 @@ function HSSE () {
                 return result});
             
         });
-        //@Pranav was planning to map each child component and add it to a new usestate array  instead of using carddata.
-        //This function pulls each child component from a location, haven't gotten to looking at the data inside though.
     };
     
 
@@ -91,14 +89,14 @@ function HSSE () {
         };
     }, []);
 
-    // for toggling between this page and the all libraries page
+    //for toggling between this page and the all libraries page
     useEffect(() => {
         const file2Interval = setInterval(() => {
           setShowFile2(true);
           setTimeout(() => {
             setShowFile2(false);
-          }, 3000); // Hide after 3 seconds
-        }, 6000); // Show every 6 seconds
+          }, 15000); // Hide after 15 seconds
+        }, 30000); // Show every 30 seconds
       
         return () => {
           clearInterval(file2Interval);
@@ -114,15 +112,26 @@ function HSSE () {
         {showFile2 ? (
             <File2 />
           ) : (
+        <>
+        <div className="box">
+          <div className="libraries">
+            <div className = "card">
+              <h1 style={{ fontFamily:'tahoma', textAlign: 'left', fontSize:'30px', marginBottom:'2px',fontWeight:'bolder'}}>HSSE Library Real Time Occupancy Data</h1>
+              <h2 style={{ fontFamily:'tahoma', textAlign: 'left', fontSize:'15px',fontWeight:'bolder' }}>Stewart Center (8am - 10pm)</h2>
+                {cardData.map((card,index) => (
+                  <CARD key={index} floorName={card.floorName} capacity = {card.capacity} chart = {card.chart}/>))}
+            </div>
+          </div>
 
-        <div className = "card">
-        <h1 style={{ fontFamily:'tahoma', textAlign: 'left', fontSize:'30px', marginBottom:'2px',fontWeight:'bolder'}}>HSSE Library Real Time Occupancy Data</h1>
-        <h2 style={{ fontFamily:'tahoma', textAlign: 'left', fontSize:'15px',fontWeight:'bolder' }}>Stewart Library, Open 8am - 10pm</h2>
-          {cardData.map((card,index) => (
-            <CARD key={index} floorName={card.floorName} capacity = {card.capacity} chart = {card.chart}/>))}
+        <div className="waitz">
+          <img style={{height: '300px'}} src={QrCode} />
         </div>
-
-    )}
+        <div className="think">
+          <img src={purdueTHINK} />
+        </div> 
+        </div>
+        </>
+        )}
 
     </>
     );

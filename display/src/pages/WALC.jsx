@@ -6,6 +6,7 @@ import QrCode  from '../QRcode.png';
 import '../App.css'
 import CARD from '../components/card.jsx'
 import File2 from './Libraries.jsx' // this the main file
+import '../styles/libraries.css';
 
 function WALC () {
     const [chartArray, setChart2] = useState([[], []]);
@@ -75,8 +76,6 @@ function WALC () {
                 return result});
             
         });
-        //@Pranav was planning to map each child component and add it to a new usestate array  instead of using carddata.
-        //This function pulls each child component from a location, haven't gotten to looking at the data inside though.
     };
     
 
@@ -101,8 +100,8 @@ function WALC () {
           setShowFile2(true);
           setTimeout(() => {
             setShowFile2(false);
-          }, 3000); // Hide after 3 seconds
-        }, 6000); // Show every 6 seconds
+          }, 15000); // Hide after 15 seconds
+        }, 30000); // Show every 30 seconds
       
         return () => {
           clearInterval(file2Interval);
@@ -111,21 +110,25 @@ function WALC () {
         
     return(
         <>
-        
         {showFile2 ? (
             <File2 />
           ) : (
-            <div>
-            <div className = "card">
-            <h1 style={{ fontFamily:'tahoma', textAlign: 'left', fontSize:'30px', marginBottom:'2px',fontWeight:'bolder'}}>WALC Library Real Time Occupancy Data</h1>
-            <h2 style={{ fontFamily:'tahoma', textAlign: 'left', fontSize:'15px',fontWeight:'bolder' }}>Open 24/7</h2>
-            {cardData.map((card,index) => (
-                <CARD key={index} floorName={card.floorName} capacity = {card.capacity} chart = {card.chart}/>))}
-            <div className='image-row'>
-            </div>
-            </div>
-            </div>
-            
+            <div className="box">
+              <div className="libraries">
+                <div className = "card">
+                  <h1 style={{ fontFamily:'tahoma', textAlign: 'left', fontSize:'30px', marginBottom:'2px',fontWeight:'bolder'}}>WALC Library Real Time Occupancy Data</h1>
+                  <h2 style={{ fontFamily:'tahoma', textAlign: 'left', fontSize:'15px',fontWeight:'bolder' }}>Open 24/7</h2>
+                  {cardData.map((card,index) => (
+                      <CARD key={index} floorName={card.floorName} capacity = {card.capacity} chart = {card.chart}/>))}
+                </div>
+              </div>
+              <div className="waitz">
+                <img style={{height: '300px'}} src={QrCode} />
+              </div>
+              <div className="think">
+                <img src={purdueTHINK} />
+              </div> 
+           </div>
         )}
 
         </>

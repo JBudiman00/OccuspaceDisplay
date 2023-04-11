@@ -7,6 +7,7 @@ import PARRISH from "./pages/PARRISH";
 import MATH from "./pages/MATH";
 import HICKS from "./pages/HICKS";
 import Layout from "./pages/Layout";
+import AV from "./pages/AV";  //Still experimental/not entirely working
 import Libraries from "./pages/Libraries";
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/parrish" element={<PARRISH />} />
         <Route path="/math" element={<MATH />} />
         <Route path="/hicks" element={<HICKS />} />
+        <Route path="/av" element={<AV />} />
         <Route path="/libraries" element={<Libraries />} />
       </Routes>
     </Router>

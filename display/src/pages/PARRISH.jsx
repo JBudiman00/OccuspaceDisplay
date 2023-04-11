@@ -6,6 +6,7 @@ import QrCode  from '../QRcode.png';
 import '../App.css'
 import CARD from '../components/card.jsx'
 import File2 from './Libraries.jsx' // this the main file
+import '../styles/libraries.css';
 
 function PARRISH () {
     const [cardData,setCard] = useState([]);
@@ -142,8 +143,8 @@ function PARRISH () {
           setShowFile2(true);
           setTimeout(() => {
             setShowFile2(false);
-          }, 3000); // Hide after 3 seconds
-        }, 6000); // Show every 6 seconds
+          }, 15000); // Hide after 15 seconds
+        }, 30000); // Show every 30 seconds
       
         return () => {
           clearInterval(file2Interval);
@@ -152,18 +153,28 @@ function PARRISH () {
         
     return(
         <>
-
         {showFile2 ? (
             <File2 />
           ) : (
-        <div className = "card">
-        <h1 style={{ fontFamily:'tahoma', textAlign: 'left', fontSize:'30px', marginBottom:'2px',fontWeight:'bolder'}}>PARRISH Library Real Time Occupancy Data</h1>
-        <h2 style={{ fontFamily:'tahoma', textAlign: 'left', fontSize:'15px',fontWeight:'bolder' }}>Krannert Library, Open 8am - 12pm</h2>
-          {mainData.map((card,index) => (
-            <CARD key={index} floorName={card.floorName} capacity = {card.capacity} chart = {card.chart}/>))}
-          {cardData.map((card,index) => (
-            <CARD key={index} floorName={card.floorName} capacity = {card.capacity} chart = {card.chart}/>))}
-        </div>
+          <div className="box">
+            <div className='libraries'>
+              <div className = "card">
+                <h1 style={{ fontFamily:'tahoma', textAlign: 'left', fontSize:'30px', marginBottom:'2px',fontWeight:'bolder'}}>PARRISH Library Real Time Occupancy Data</h1>
+                <h2 style={{ fontFamily:'tahoma', textAlign: 'left', fontSize:'15px',fontWeight:'bolder' }}>Krannert (8am - 12pm)</h2>
+                  {mainData.map((card,index) => (
+                    <CARD key={index} floorName={card.floorName} capacity = {card.capacity} chart = {card.chart}/>))}
+                  {cardData.map((card,index) => (
+                    <CARD key={index} floorName={card.floorName} capacity = {card.capacity} chart = {card.chart}/>))}
+              </div>
+            </div>
+          <div className="waitz">
+            <img style={{height: '300px'}} src={QrCode} />
+          </div>
+          <div className="think">
+            <img src={purdueTHINK} />
+          </div> 
+
+          </div>
         )}
 
         </>

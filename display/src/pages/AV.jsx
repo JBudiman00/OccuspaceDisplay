@@ -6,6 +6,7 @@ import QrCode  from '../QRcode.png';
 import '../App.css'
 import CARD from '../components/card.jsx'
 import File2 from './Libraries.jsx' // this the main file
+import '../styles/libraries.css';
 
 function HICKS () {
     const [chartArray, setChart2] = useState([[], []]);
@@ -51,7 +52,7 @@ function HICKS () {
             if (name.includes('Lower Level')) {
                 name = 'Basement Level'
             }
-            const chart = <PieChart name={name} percent={response.percentage} />;
+            const chart = <PieChart name="" percent={response.percentage} />;
             const result = {};
             result['floorName'] = name;
             result['chart'] = chart;
@@ -75,8 +76,6 @@ function HICKS () {
                 return result});
             
         });
-        //@Pranav was planning to map each child component and add it to a new usestate array  instead of using carddata.
-        //This function pulls each child component from a location, haven't gotten to looking at the data inside though.
     };
     
 
@@ -101,8 +100,8 @@ function HICKS () {
           setShowFile2(true);
           setTimeout(() => {
             setShowFile2(false);
-          }, 3000); // Hide after 3 seconds
-        }, 6000); // Show every 6 seconds
+          }, 15000); // Hide after 3 seconds
+        }, 30000); // Show every 6 seconds
       
         return () => {
           clearInterval(file2Interval);
@@ -112,18 +111,26 @@ function HICKS () {
     
         
     return(
-
         <>
-
         {showFile2 ? (
             <File2 />
           ) : (
-        <div className = "card">
-        <h1 style={{ textAlign: 'left', fontSize:'30px', fontFamily:'Georgia, serif', marginBottom:'2px'}}>MATH Library Real Time Occupancy Data</h1>
-        <h1 style={{ textAlign: 'left', fontSize:'20px', fontFamily:'Georgia, serif'}}>Open From 8-10 pm</h1>
-          {cardData.map((card,index) => (
-            <CARD key={index} floorName={card.floorName} capacity = {card.capacity} chart = {card.chart}/>))}
-        </div>
+          <div className="box">
+            <div className="libraries">
+              <div className = "card">
+                <h1 style={{ textAlign: 'left', fontSize:'30px', fontFamily:'Georgia, serif', marginBottom:'2px'}}>AvTech Library Real Time Occupancy Data</h1>
+                <h1 style={{ textAlign: 'left', fontSize:'20px', fontFamily:'Georgia, serif'}}>Aviation Technology Library (8am - 10pm)</h1>
+                  {cardData.map((card,index) => (
+                    <CARD key={index} floorName={card.floorName} capacity = {card.capacity} chart = {card.chart}/>))}
+              </div>
+            </div>
+            <div className="waitz">
+              <img style={{height: '300px'}} src={QrCode} />
+            </div>
+            <div className="think">
+              <img src={purdueTHINK} />
+            </div> 
+          </div>
         )}
 
         </>

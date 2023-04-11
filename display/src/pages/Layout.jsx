@@ -22,6 +22,9 @@ const Layout = () => {
                     <Link to="/HICKS">Hicks Library</Link>
                 </li>
                 <li>
+                    <Link to="/av">AV Library</Link>
+                </li>
+                <li>
                     <Link to="/libraries">Main Library Display</Link>
                 </li>
             </ul>
